@@ -8,6 +8,8 @@ import { Form } from '@edx/paragon';
 import NetworkButton from 'components/NetworkButton';
 import messages from './messages';
 import useImportGradesButtonData from './hooks';
+import { AppContext } from '@edx/frontend-platform/react';
+
 
 /**
  * <ImportGradesButton />
@@ -22,6 +24,8 @@ export const ImportGradesButton = () => {
     handleFileInputChange,
   } = useImportGradesButtonData();
   const { formatMessage } = useIntl();
+  const { authenticatedUser } = React.useContext(AppContext);
+
   return (
     <>
       <Form action={gradeExportUrl} method="post">
@@ -36,12 +40,14 @@ export const ImportGradesButton = () => {
           />
         </Form.Group>
       </Form>
+      {authenticatedUser.email.includes('@talentsprint.com') && (
       <NetworkButton
         className="import-grades-btn"
         label={messages.importGradesBtnText}
         onClick={handleClickImportGrades}
         import
       />
+      )}
     </>
   );
 };
