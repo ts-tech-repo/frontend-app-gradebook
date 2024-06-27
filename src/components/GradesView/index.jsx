@@ -54,7 +54,6 @@ export const GradesView = ({ updateQueryParams }) => {
       <GradebookTable />
 
       <PageButtons />
-      <p>* {mastersHint}</p>
       <EditModal />
 
       <ImportSuccessToast />
