@@ -6,6 +6,7 @@ import NetworkButton from 'components/NetworkButton';
 
 import messages from './messages';
 import useInterventionsReportData from './hooks';
+import { AppContext } from '@edx/frontend-platform/react';
 
 /**
  * <InterventionsReport />
@@ -15,6 +16,7 @@ import useInterventionsReportData from './hooks';
 export const InterventionsReport = () => {
   const { show, handleClick } = useInterventionsReportData();
   const { formatMessage } = useIntl();
+  const { authenticatedUser } = React.useContext(AppContext);
 
   if (!show) {
     return null;
@@ -22,6 +24,7 @@ export const InterventionsReport = () => {
 
   return (
     <div>
+       {authenticatedUser.username}
       <h4 className="mt-0">
         {formatMessage(messages.title)}
       </h4>
