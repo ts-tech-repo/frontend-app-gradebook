@@ -24,21 +24,23 @@ export const InterventionsReport = () => {
 
   return (
     <div>
-       {authenticatedUser.username}
-      <h4 className="mt-0">
-        {formatMessage(messages.title)}
-      </h4>
-      <div
-        className="d-flex justify-content-between align-items-center"
-      >
-        <div className="intervention-report-description">
-          {formatMessage(messages.description)}
-        </div>
-        <NetworkButton
-          label={messages.downloadBtn}
-          onClick={handleClick}
-        />
-      </div>
+      {console.log(authenticatedUser.email)}
+        {authenticatedUser.email.includes('@talentsprint.com') && (
+          <>    
+            <h4 className="mt-0">
+              {formatMessage(messages.title)}
+            </h4>
+            <div className="d-flex justify-content-between align-items-center">
+              <div className="intervention-report-description">
+                {formatMessage(messages.description)}
+              </div>
+                <NetworkButton
+                  label={messages.downloadBtn}
+                  onClick={handleClick}
+                />
+            </div>
+          </>
+        )}
     </div>
   );
 };
