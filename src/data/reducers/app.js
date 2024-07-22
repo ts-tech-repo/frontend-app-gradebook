@@ -7,7 +7,6 @@ import gradesActions from '../actions/grades';
 
 const initialState = {
   courseId: '',
-  courseName: '',
   activeView: views.grades,
   filters: {
     assignmentGradeMax: initialFilters.assignmentGradeMax,
@@ -114,8 +113,6 @@ const app = (state = initialState, { type, payload } = {}) => {
     }
     case gradesActions.csvUpload.finished.toString():
       return { ...state, showImportSuccessToast: true };
-    case 'INITIALIZE_APP':
-      return { ...state, courseName: payload.courseName};
     default:
       return state;
   }
