@@ -36,10 +36,10 @@ export const useGradebookTableData = () => {
     return { Header: label, accessor: heading };
   };
 
-  // #SA || Showing '-' in "Total Grade" column if letter grade exists
+  // #SA || Show '-' in "Total Grade" column if letter grade exists
   let letterGradeExists = (section_breakdown) => {
     if (section_breakdown) {
-      entry.section_breakdown.forEach(subsection => {
+      section_breakdown.forEach(subsection => {
         if (subsection.letter_grade) {
           return true;
         }
@@ -47,11 +47,6 @@ export const useGradebookTableData = () => {
     }
     return false;
   }
-  /*entry.section_breakdown.forEach(subsection => {
-    if (subsection.letter_grade) {
-      letterGradeExists = true;
-    }
-  });*/
 
   const mapRows = entry => ({
     [Headings.username]: (
