@@ -37,7 +37,16 @@ export const useGradebookTableData = () => {
   };
 
   // #SA || Showing '-' in "Total Grade" column if letter grade exists
-  let letterGradeExists = false;
+  let letterGradeExists = (section_breakdown) => {
+    if (section_breakdown) {
+      entry.section_breakdown.forEach(subsection => {
+        if (subsection.letter_grade) {
+          return true;
+        }
+      });
+    }
+    return false;
+  }
   /*entry.section_breakdown.forEach(subsection => {
     if (subsection.letter_grade) {
       letterGradeExists = true;
@@ -50,7 +59,7 @@ export const useGradebookTableData = () => {
     ),
     [Headings.email]: (<Fields.Text value={entry.email} />),
     [Headings.fullName]: (<Fields.Text value={entry.full_name} />),
-    [Headings.totalGrade]: `${letterGradeExists ? '-' : roundGrade(entry.percent * 100)}${letterGradeExists ? '' : getLocalizedPercentSign()}`,
+    [Headings.totalGrade]: letterGradeExists(entry.section_breakdown) ? `-` : `${roundGrade(entry.percent * 100)}${getLocalizedPercentSign()}`,
     ...entry.section_breakdown.reduce((acc, subsection) => ({
       ...acc,
       [subsection.label]: <GradeButton {...{ entry, subsection }} />,
