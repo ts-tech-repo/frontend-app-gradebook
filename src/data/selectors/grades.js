@@ -174,10 +174,7 @@ export const subsectionGrade = StrictDict({
    * returns rounded percent times 100
    * @param {object} subsection - grade subsection entry
    * @return {string} - percent-formatted subsection grade string
-   
-  [GradeFormats.percent]: (subsection) => (
-    module.roundGrade(subsection.percent * 100)
-  ),*/
+   */
   [GradeFormats.percent]: (subsection) => {
     const letter_grade = subsection.letter_grade;
     if (letter_grade) {
@@ -316,7 +313,6 @@ export default StrictDict({
   ...simpleSelectors,
   gradeData,
   allGrades,
-  bulkManagementHistoryEntries,
   getExampleSectionBreakdown,
   gradeOverrides,
   uploadSuccess,
