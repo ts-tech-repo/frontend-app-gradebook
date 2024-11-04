@@ -50,7 +50,7 @@ export const useGradebookTableData = () => {
     ),
     [Headings.email]: (<Fields.Text value={entry.email} />),
     [Headings.fullName]: (<Fields.Text value={entry.full_name} />),
-    [Headings.totalGrade]: letterGradeExists ? `-` : `${roundGrade(entry.percent * 100)}${getLocalizedPercentSign()}`,
+    [Headings.totalGrade]: `${letterGradeExists ? '-' : roundGrade(entry.percent * 100)}${letterGradeExists ? '' : getLocalizedPercentSign()}`,
     ...entry.section_breakdown.reduce((acc, subsection) => ({
       ...acc,
       [subsection.label]: <GradeButton {...{ entry, subsection }} />,
