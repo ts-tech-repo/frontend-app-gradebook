@@ -36,13 +36,20 @@ export const useGradebookTableData = () => {
     return { Header: label, accessor: heading };
   };
 
+  let letterGradeExists = false;
+  entry.section_breakdown.forEach(subsection => {
+    if (subsection.letter_grade) {
+      letterGradeExists = true;
+    }
+  });
+
   const mapRows = entry => ({
     [Headings.username]: (
       <Fields.Username username={entry.username} userKey={entry.external_user_key} />
     ),
     [Headings.email]: (<Fields.Text value={entry.email} />),
     [Headings.fullName]: (<Fields.Text value={entry.full_name} />),
-    [Headings.totalGrade]: `${entry.letter_grade ? '-' : roundGrade(entry.percent * 100)}${ entry.letter_grade ? '' : getLocalizedPercentSign()}`,
+    [Headings.totalGrade]: `${letterGradeExists ? '-' : roundGrade(entry.percent * 100)}${ letterGradeExists ? '' : getLocalizedPercentSign()}`,
     ...entry.section_breakdown.reduce((acc, subsection) => ({
       ...acc,
       [subsection.label]: <GradeButton {...{ entry, subsection }} />,
