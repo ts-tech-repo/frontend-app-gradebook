@@ -160,6 +160,11 @@ export const subsectionGrade = StrictDict({
    * @return {string} - absolute-formatted subsection grade string
    */
   [GradeFormats.absolute]: (subsection) => {
+    const letter_grade = subsection.letter_grade;
+    if (letter_grade) {
+      return `${letter_grade}`;
+    }
+
     const earned = module.roundGrade(subsection.score_earned);
     const possible = module.roundGrade(subsection.score_possible);
     return subsection.attempted ? `${earned}${getLocalizedSlash()}${possible}` : `${earned}`;
