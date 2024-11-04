@@ -37,17 +37,9 @@ export const useGradebookTableData = () => {
   };
 
   // #SA || Show '-' in "Total Grade" column if letter grade exists
-  let letterGradeExists = (section_breakdown) => {
-    if (section_breakdown) {
-      section_breakdown.forEach(subsection => {
-        console.log("SA: ", subsection);
-        if (subsection.letter_grade) {
-          return true;
-        }
-      });
-    }
-    return false;
-  }
+  const letterGradeExists = (section_breakdown) => {
+    return section_breakdown?.some(subsection => subsection.letter_grade) || false;
+  };
 
   const mapRows = entry => ({
     [Headings.username]: (
@@ -55,7 +47,7 @@ export const useGradebookTableData = () => {
     ),
     [Headings.email]: (<Fields.Text value={entry.email} />),
     [Headings.fullName]: (<Fields.Text value={entry.full_name} />),
-    [Headings.totalGrade]: `-`,
+    [Headings.totalGrade]: letterGradeExists(entry.section_breakdown) ? `-` : `${roundGrade(entry.percent * 100)}${getLocalizedPercentSign()}`,
     ...entry.section_breakdown.reduce((acc, subsection) => ({
       ...acc,
       [subsection.label]: <GradeButton {...{ entry, subsection }} />,
