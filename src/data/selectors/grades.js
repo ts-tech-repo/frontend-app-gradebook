@@ -313,6 +313,7 @@ export default StrictDict({
   ...simpleSelectors,
   gradeData,
   allGrades,
+  bulkManagementHistoryEntries,
   getExampleSectionBreakdown,
   gradeOverrides,
   uploadSuccess,
