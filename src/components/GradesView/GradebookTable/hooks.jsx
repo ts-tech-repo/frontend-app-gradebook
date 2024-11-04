@@ -40,6 +40,7 @@ export const useGradebookTableData = () => {
   let letterGradeExists = (section_breakdown) => {
     if (section_breakdown) {
       section_breakdown.forEach(subsection => {
+        console.log("SA: ", subsection);
         if (subsection.letter_grade) {
           return true;
         }
