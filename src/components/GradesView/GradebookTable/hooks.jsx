@@ -38,11 +38,11 @@ export const useGradebookTableData = () => {
 
   // #SA || Showing '-' in "Total Grade" column if letter grade exists
   let letterGradeExists = false;
-  entry.section_breakdown.forEach(subsection => {
+  /*entry.section_breakdown.forEach(subsection => {
     if (subsection.letter_grade) {
       letterGradeExists = true;
     }
-  });
+  });*/
 
   const mapRows = entry => ({
     [Headings.username]: (
