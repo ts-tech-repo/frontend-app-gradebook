@@ -36,6 +36,7 @@ export const useGradebookTableData = () => {
     return { Header: label, accessor: heading };
   };
 
+  // #SA || Showing '-' in "Total Grade" column if letter grade exists
   let letterGradeExists = false;
   entry.section_breakdown.forEach(subsection => {
     if (subsection.letter_grade) {

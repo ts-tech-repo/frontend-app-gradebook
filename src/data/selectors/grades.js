@@ -153,6 +153,8 @@ export const transformHistoryEntry = ({
  */
 export const roundGrade = val => parseFloat((val || 0).toFixed(2));
 export const subsectionGrade = StrictDict({
+  /** #SA || Added letter_grade checks in both absolute and percent */
+
   /**
    * subsectionGrade.absolute(subsection)
    * returns rounded {earned}/{possible} if attempted, else ${earned}
