@@ -44,13 +44,16 @@ export const GradeButton = ({ entry, subsection }) => {
   return areGradesFrozen
     ? label
     : (
+      // #SA || remove hyperlink for re-grading
+      /*
       <Button
         variant="link"
         className="btn-header grade-button"
         onClick={onClick}
       >
         {label}
-      </Button>
+      </Button>*/
+      {label}
     );
 };
 GradeButton.propTypes = {

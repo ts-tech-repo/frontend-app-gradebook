@@ -57,7 +57,9 @@ export const EditModal = () => {
           <ModalDialog.CloseButton variant="tertiary">
             {formatMessage(messages.closeText)}
           </ModalDialog.CloseButton>
-          {formatMessage(messages.saveGrade)}
+          <Button variant="primary" onClick={handleAdjustedGradeClick}>
+            {formatMessage(messages.saveGrade)}
+          </Button>
         </ActionRow>
       </ModalDialog.Footer>
     </ModalDialog>
