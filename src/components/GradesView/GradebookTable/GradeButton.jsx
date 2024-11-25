@@ -41,6 +41,9 @@ export const GradeButton = ({ entry, subsection }) => {
     label,
     onClick,
   } = module.useGradeButtonData({ entry, subsection });
+
+  return label;
+  /* #SA || letter_grade changes || Removed hyperlink to disable re-grade
   return areGradesFrozen
     ? label
     : (
@@ -52,6 +55,7 @@ export const GradeButton = ({ entry, subsection }) => {
         {label}
       </Button>
     );
+  */
 };
 GradeButton.propTypes = {
   subsection: PropTypes.shape({

@@ -35,13 +35,18 @@ export const useGradebookTableData = () => {
     return { Header: label, accessor: heading };
   };
 
+  // #SA || letter_grade changes || Show '-' in "Total Grade" column if letter grade exists
+  const allLetterGrade = (section_breakdown) => {
+    return section_breakdown?.every(subsection => subsection.letter_grade) || false;
+  };
+
   const mapRows = entry => ({
     [Headings.username]: (
       <Fields.Username username={entry.username} userKey={entry.external_user_key} />
     ),
     [Headings.email]: (<Fields.Text value={entry.email} />),
     [Headings.fullName]: (<Fields.Text value={entry.full_name} />),
-    [Headings.totalGrade]: `${roundGrade(entry.percent * 100)}${getLocalizedPercentSign()}`,
+    [Headings.totalGrade]: allLetterGrade(entry.section_breakdown) ? `-` : `${roundGrade(entry.percent * 100)}${getLocalizedPercentSign()}`,
     ...entry.section_breakdown.reduce((acc, subsection) => ({
       ...acc,
       [subsection.label]: <GradeButton {...{ entry, subsection }} />,

@@ -158,8 +158,13 @@ export const subsectionGrade = StrictDict({
    * returns rounded {earned}/{possible} if attempted, else ${earned}
    * @param {object} subsection - grade subsection entry
    * @return {string} - absolute-formatted subsection grade string
+   * #SA || letter_grade changes 
    */
   [GradeFormats.absolute]: (subsection) => {
+    const letter_grade = subsection.letter_grade;
+    if (letter_grade) {
+      return `${letter_grade}`;
+    }
     const earned = module.roundGrade(subsection.score_earned);
     const possible = module.roundGrade(subsection.score_possible);
     return subsection.attempted ? `${earned}${getLocalizedSlash()}${possible}` : `${earned}`;
@@ -169,10 +174,17 @@ export const subsectionGrade = StrictDict({
    * returns rounded percent times 100
    * @param {object} subsection - grade subsection entry
    * @return {string} - percent-formatted subsection grade string
+   * #SA || letter_grade changes 
    */
-  [GradeFormats.percent]: (subsection) => (
-    module.roundGrade(subsection.percent * 100)
-  ),
+  [GradeFormats.percent]: (subsection) => {
+    const letter_grade = subsection.letter_grade;
+    if (letter_grade) {
+      return `${letter_grade}`;
+    }
+
+    const percent = module.roundGrade(subsection.percent * 100)
+    return `${percent}`;
+  },
 });
 
 // Selectors
