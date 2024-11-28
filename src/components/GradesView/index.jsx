@@ -46,8 +46,7 @@ export const GradesView = ({ updateQueryParams }) => {
 
       <div className="d-flex justify-content-between align-items-center mb-2">
         <ScoreViewInput />
-        {/* #SA || letter_grade changes || Removed bulk management controls from gradebook page. i.e., "Download Grades" & "Import Grades" */}
-        {/* <BulkManagementControls /> */}
+        <BulkManagementControls />
       </div>
 
       <FilteredUsersLabel />
